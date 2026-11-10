@@ -98,7 +98,7 @@ test('late image completions cannot replace the current photo or reopen a closed
     await stale.onload();
     assert.notEqual(s.document.querySelector('#viewer-images').firstChild, stale);
     await current.onload();
-    assert.equal(s.document.querySelector('#viewer-images').firstChild, current);
+    assert.equal(s.document.querySelector('#viewer-images').lastChild, current);
     s.dialog.close();
     await current.onload();
     assert.equal(s.document.querySelector('#viewer-images').children.length, 0);
@@ -113,8 +113,12 @@ test('slow images show status; WebP failure falls back to JPEG, then offers retr
     assert.equal(status.hidden, false);
     const image = s.pendingImages.at(-1);
     image.onerror();
-    assert.match(image.src, /\.jpg$/);
-    image.onerror();
+    const fallback = s.pendingImages.at(-1);
+    assert.notEqual(fallback, image);
+    assert.match(fallback.src, /\.jpg$/);
+    image.onerror(); // A late error from WebP must not fail the JPEG attempt.
+    assert.equal(s.document.querySelector('#viewer-retry').hidden, true);
+    fallback.onerror();
     assert.equal(s.document.querySelector('#viewer-retry').hidden, false);
     s.click(s.document.querySelector('#viewer-retry'));
     const retried = s.pendingImages.at(-1);
@@ -154,10 +158,85 @@ test('modified clicks and browsers without dialog support retain direct-image li
 
 test('broken thumbnails expose a usable image link; contact closes on outside click', (t) => {
     const s = setup(t, { brokenThumbnail: true });
+    s.links[0].querySelector('img').dispatchEvent(new s.window.Event('error'));
     assert.equal(s.links[0].querySelector('img').hidden, true);
     assert.equal(s.links[0].querySelector('.photo-error').hidden, false);
     const contact = s.document.querySelector('#contact');
     contact.open = true;
     s.click(s.document.querySelector('h1'));
     assert.equal(contact.open, false);
+});
+
+
+test('viewer selects one source by display width and pixel density; stale errors cannot spoil success', async (t) => {
+    const s = setup(t);
+    const stage = s.document.querySelector('#viewer-stage');
+    Object.defineProperty(stage, 'clientWidth', { value: 700 });
+    Object.defineProperty(stage, 'clientHeight', { value: 900 });
+    Object.defineProperty(s.window, 'devicePixelRatio', { value: 2 });
+    s.click(s.links[0]);
+    const image = s.pendingImages.at(-1);
+    assert.match(image.src, /\/1600\.webp$/);
+    assert.equal(image.srcset, '');
+    image.onerror();
+    const fallback = s.pendingImages.at(-1);
+    assert.match(fallback.src, /\/1600\.jpg$/);
+    assert.equal(fallback.srcset, '');
+    await fallback.onload();
+    image.onerror();
+    fallback.onerror();
+    assert.equal(s.document.querySelector('#viewer-status').hidden, true);
+    assert.equal(s.document.querySelector('#viewer-images').lastChild, fallback);
+});
+
+
+test('unrequested lazy images are not hidden and subsequent loads recover earlier errors', (t) => {
+    const s = setup(t, { brokenThumbnail: true });
+    const image = s.links[1].querySelector('img');
+    const message = s.links[1].querySelector('.photo-error');
+    assert.equal(image.complete, true);
+    assert.equal(image.naturalWidth, 0);
+    assert.equal(image.hidden, false);
+    assert.equal(message.hidden, true);
+    image.dispatchEvent(new s.window.Event('load'));
+    assert.equal(image.hidden, false);
+    assert.equal(image.hasAttribute('data-loading'), false);
+    image.dispatchEvent(new s.window.Event('error'));
+    assert.equal(message.hidden, false);
+    image.dispatchEvent(new s.window.Event('load'));
+    assert.equal(image.hidden, false);
+    assert.equal(message.hidden, true);
+});
+
+test('thumbnail stays visible until full-image decode and through the entire crossfade', async (t) => {
+    const s = setup(t);
+    s.click(s.links[0]);
+    const images = s.document.querySelector('#viewer-images');
+    const preview = images.firstChild;
+    const full = s.pendingImages.at(-1);
+    let finishDecode;
+    full.decode = () => new Promise((resolve) => { finishDecode = resolve; });
+    const loading = full.onload();
+    assert.equal(images.children.length, 1);
+    assert.equal(images.firstChild, preview);
+    assert.equal(preview.hidden, false);
+    finishDecode();
+    await loading;
+    assert.equal(images.children.length, 2);
+    assert.equal(images.firstChild, preview);
+    assert.equal(images.lastChild, full);
+    full.dispatchEvent(new s.window.Event('animationend'));
+    assert.equal(images.children.length, 1);
+    assert.equal(images.firstChild, full);
+});
+
+test('reduced motion replaces the thumbnail after decode without retaining a fading layer', async (t) => {
+    const s = setup(t);
+    s.window.matchMedia = () => ({ matches: true });
+    s.click(s.links[0]);
+    const full = s.pendingImages.at(-1);
+    await full.onload();
+    const images = s.document.querySelector('#viewer-images');
+    assert.equal(images.children.length, 1);
+    assert.equal(images.firstChild, full);
 });

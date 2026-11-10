@@ -122,3 +122,53 @@ photography subdomain.
 `npm run dev` starts the local portfolio for manual review. Original photographs
 are intentionally ignored by Git; build and deploy from this machine until a
 durable remote media source is configured.
+
+
+## Image loading correction — 2026-11-10, deployed
+
+The user reported lightbox errors in their browser and a Safari gallery with
+all but the eager first image hidden. The gallery initialization incorrectly
+classified `complete && naturalWidth === 0` as failure even for an unrequested
+lazy image. It now waits for an actual error event, and every later successful
+load restores visibility and clears the error. Listeners remain active across
+responsive source changes.
+
+The lightbox now chooses one rendition using the stage dimensions and device
+pixel ratio, with a separate image element for JPEG fallback. Attempt guards
+ignore stale errors. This removes overlapping src/srcset updates; the exact
+cause of the user's lightbox failure has not been independently reproduced.
+
+Validation: all 1072 production image URLs returned HTTP 200 and image content
+types. The original lightbox successfully loaded the reported portrait in the
+available in-app browser at two viewport sizes. Firefox native access was
+denied by computer-control permissions. The updated production build and all
+13 tests passed, including lazy initialization/recovery and fallback race
+regressions. Firefox was added to the existing browser test matrix; the full
+browser suite has not been executed.
+
+After the user restored Cloudflare login, the correction was deployed as
+`1839bbf4-e1ab-4545-aa60-c7d114ad0144` on 2026-11-10 at approximately
+05:22 America/New_York. Two changed assets were uploaded and 1082 reused.
+Live browser inspection confirmed the new script, zero hidden gallery images
+or visible gallery errors, the reported People portrait successfully decoded
+with no error message, and successful next/previous navigation. The live HTTP
+verification also passed for the page, robots, sitemap, ten image samples,
+security/cache headers, and 404. Safari and Firefox on the user's devices still
+need confirmation; the automated browser matrix remains unexecuted.
+
+## Smooth full-image reveal — 2026-11-10
+
+The lightbox retains its thumbnail until the selected full image finishes
+loading and decoding. The full image then fades from transparent to opaque
+above the thumbnail over 650ms with ease-in-out timing; the thumbnail is
+removed only after the animation ends. Both layers share the same contained
+image bounds, avoiding a blank frame or layout jump. Reduced-motion users get
+an immediate replacement after decoding. Navigation and close guards remain.
+
+Production build and all 15 automated tests passed, including deferred decode,
+thumbnail retention through animation completion, and reduced-motion cleanup.
+
+Deployed version: `9b074a89-499b-4f36-b50d-f6fd43fbe74b`.
+Live browser inspection confirmed the loaded thumbnail remained visible while
+waiting, followed by the decoded full image with a 0.65s animation; after
+completion only the full image remained, at opacity 1, with no loading error.

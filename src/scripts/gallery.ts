@@ -1,4 +1,4 @@
-import type { Collection, Photo } from '../lib/portfolio';
+import type { Collection, Photo, Rendition } from '../lib/portfolio';
 
 const data = document.querySelector<HTMLScriptElement>('#portfolio-data');
 const dialog = document.querySelector<HTMLDialogElement>('#photo-viewer');
@@ -15,17 +15,23 @@ document.addEventListener('keydown', (event) => {
 });
 
 for (const image of document.querySelectorAll<HTMLImageElement>('.photo-link img')) {
-    const ready = () => image.removeAttribute('data-loading');
+    const message = image.closest('.photo-link')?.querySelector<HTMLElement>('.photo-error');
+    const ready = () => {
+        image.removeAttribute('data-loading');
+        image.hidden = false;
+        if (message) message.hidden = true;
+    };
     const failed = () => {
-        ready();
+        image.removeAttribute('data-loading');
         image.hidden = true;
-        const message = image.closest('.photo-link')?.querySelector<HTMLElement>('.photo-error');
         if (message) message.hidden = false;
     };
-    if (!image.complete) image.setAttribute('data-loading', '');
-    image.addEventListener('load', ready, { once: true });
-    image.addEventListener('error', failed, { once: true });
-    if (image.complete && image.naturalWidth === 0) failed();
+    image.addEventListener('load', ready);
+    image.addEventListener('error', failed);
+    // Lazy images can report complete with zero naturalWidth before any request.
+    // Only an actual error event establishes failure; a later load can recover.
+    if (image.complete && image.naturalWidth > 0) ready();
+    else image.setAttribute('data-loading', '');
 }
 
 if (data?.textContent && dialog && typeof dialog.showModal === 'function') {
@@ -91,7 +97,8 @@ function initializeViewer(viewer: HTMLDialogElement, collections: Collection[]) 
         if (thumbnail?.complete && thumbnail.naturalWidth) {
             const preview = new Image();
             preview.src = thumbnail.currentSrc || thumbnail.src;
-            preview.alt = photo.alt;
+            preview.alt = '';
+            preview.setAttribute('aria-hidden', 'true');
             preview.className = 'viewer-image';
             images.append(preview);
         }
@@ -101,39 +108,58 @@ function initializeViewer(viewer: HTMLDialogElement, collections: Collection[]) 
         }, 250);
 
         const displayWidth = Math.min(stage.clientWidth, stage.clientHeight * photo.width / photo.height);
-        const image = new Image();
-        image.alt = photo.alt;
-        image.width = photo.width;
-        image.height = photo.height;
-        image.decoding = 'async';
-        image.className = 'viewer-image revealed';
-        image.sizes = `${Math.max(1, Math.ceil(displayWidth))}px`;
-        let usingFallback = false;
-        image.onload = async () => {
-            try { await image.decode(); } catch { /* A loaded image can still be displayed. */ }
-            if (token !== generation || !viewer.open) return;
-            clearTimeout(loadingTimer);
-            status.hidden = true;
-            images.setAttribute('aria-busy', 'false');
-            images.replaceChildren(image);
-        };
-        image.onerror = () => {
-            if (token !== generation || !viewer.open) return;
-            if (!usingFallback) {
-                usingFallback = true;
-                image.srcset = photo.jpeg.map((variant) => `${variant.src} ${variant.width}w`).join(', ');
-                image.src = photo.jpeg.at(-1)!.src;
-                return;
-            }
-            clearTimeout(loadingTimer);
-            images.setAttribute('aria-busy', 'false');
-            status.classList.add('has-error');
-            statusText.textContent = 'The photograph couldn’t load.';
-            status.hidden = false;
-            retry.hidden = false;
-        };
-        image.srcset = photo.webp.map((variant) => `${variant.src} ${variant.width}w`).join(', ');
-        image.src = photo.webp.at(-1)!.src;
+        const requiredWidth = Math.max(1, displayWidth * (window.devicePixelRatio || 1));
+        let attempt = 0;
+        function load(variants: Rendition[], fallback = false) {
+            // A single source avoids overlapping responsive-source updates on a
+            // detached image. Each fallback gets its own element and callbacks.
+            const candidates = [...variants].sort((a, b) => a.width - b.width);
+            const rendition = candidates.find((item) => item.width >= requiredWidth) ?? candidates.at(-1)!;
+            const request = ++attempt;
+            const image = new Image();
+            let loaded = false;
+            const isCurrent = () => token === generation && request === attempt && viewer.open;
+            image.alt = photo.alt;
+            image.width = photo.width;
+            image.height = photo.height;
+            image.decoding = 'async';
+            image.className = 'viewer-image revealed';
+            image.onload = async () => {
+                if (loaded || !isCurrent()) return;
+                loaded = true;
+                try { await image.decode(); } catch { /* A loaded image can still be displayed. */ }
+                if (!isCurrent()) return;
+                clearTimeout(loadingTimer);
+                status.hidden = true;
+                status.classList.remove('has-error');
+                retry.hidden = true;
+                images.setAttribute('aria-busy', 'false');
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    images.replaceChildren(image);
+                    return;
+                }
+                // Keep the thumbnail beneath the decoded image throughout the
+                // fade so there is no blank frame or sudden sharpness change.
+                const preview = images.querySelector('img');
+                image.addEventListener('animationend', () => preview?.remove(), { once: true });
+                images.append(image);
+            };
+            image.onerror = () => {
+                if (loaded || !isCurrent()) return;
+                if (!fallback) {
+                    load(photo.jpeg, true);
+                    return;
+                }
+                clearTimeout(loadingTimer);
+                images.setAttribute('aria-busy', 'false');
+                status.classList.add('has-error');
+                statusText.textContent = 'The photograph couldn’t load.';
+                status.hidden = false;
+                retry.hidden = false;
+            };
+            image.src = rendition.src;
+        }
+        load(photo.webp);
     }
 
     function move(direction: number) {

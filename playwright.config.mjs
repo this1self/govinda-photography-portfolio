@@ -19,6 +19,7 @@ export default defineConfig({
         reuseExistingServer: false,
     },
     projects: [
+        { name: 'desktop-firefox', use: { browserName: 'firefox', viewport: { width: 1440, height: 1000 } } },
         { name: 'desktop-chromium', use: { browserName: 'chromium', viewport: { width: 1440, height: 1000 } } },
         { name: 'small-mobile-chromium', use: { browserName: 'chromium', viewport: { width: 320, height: 568 }, isMobile: true, hasTouch: true } },
         { name: 'android-chromium', use: { ...devices['Pixel 7'] } },

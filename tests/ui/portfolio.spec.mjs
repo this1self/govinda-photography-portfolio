@@ -69,6 +69,7 @@ test('lightbox opens, loads, navigates, wraps, and restores focus and scroll', a
     const dialog = page.getByRole('dialog');
     await expect(dialog).toBeVisible();
     await loaded(dialog.locator('.viewer-image.revealed'));
+    await expect(page.locator('#viewer-status')).toBeHidden();
     await expect(page.getByRole('button', { name: 'Close viewer' })).toBeFocused();
     await expect(page.locator('#viewer-counter')).toHaveText(`01 / ${spacesCount}`);
     await page.getByRole('button', { name: 'Previous photograph' }).click();
@@ -78,6 +79,7 @@ test('lightbox opens, loads, navigates, wraps, and restores focus and scroll', a
     await page.keyboard.press('ArrowRight');
     await expect(page.locator('#viewer-counter')).toHaveText(`02 / ${spacesCount}`);
     await loaded(dialog.locator('.viewer-image.revealed'));
+    await expect(page.locator('#viewer-status')).toBeHidden();
     await page.keyboard.press('Escape');
     await expect(dialog).toBeHidden();
     await expect(opener).toBeFocused();
