@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+Content-Signal: search=yes, ai-train=no
+
+# Search indexing is permitted. Use of this site's photographs or other
+# content to train or fine-tune AI models is not permitted.
+# These preferences apply to the photography subdomain only.
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+# Google-Extended is separate from Google Search and Google Images indexing.
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+# Exclude the open crawl dataset, which can be reused for model training.
+User-agent: CCBot
+Disallow: /
+
+Sitemap: https://photography.govindarampingali.com/sitemap.xml

@@ -1,0 +1,369 @@
+{
+    "collections": [
+        {
+            "id": "people",
+            "title": "People",
+            "photos": [
+                {
+                    "id": "people-dsc00109",
+                    "source": "01 People/DSC00109.jpeg",
+                    "alt": "A couple seated together as guests gather in a wood-paneled room."
+                },
+                {
+                    "id": "people-dsc00196",
+                    "source": "01 People/DSC00196.jpeg",
+                    "alt": "A smiling person with shoulder-length hair against warm blurred lights."
+                },
+                {
+                    "id": "people-dsc00452",
+                    "source": "01 People/DSC00452.JPG",
+                    "alt": "Two performers embracing on a dark stage beneath a strip of light."
+                },
+                {
+                    "id": "people-dsc00465",
+                    "source": "01 People/DSC00465.JPG",
+                    "alt": "A performer in red holding a glowing sphere above their head on stage."
+                },
+                {
+                    "id": "people-dsc01222",
+                    "source": "01 People/DSC01222.JPG",
+                    "alt": "A person climbing beside the mast and rigging of a sailboat."
+                },
+                {
+                    "id": "people-dsc01443",
+                    "source": "01 People/DSC01443.jpg",
+                    "alt": "Black-and-white view of a seated craftsperson surrounded by intricate patterned boxes."
+                },
+                {
+                    "id": "people-dsc01523",
+                    "source": "01 People/DSC01523.JPG",
+                    "alt": "A musician playing a stringed instrument beside a bright blue doorway."
+                },
+                {
+                    "id": "people-dsc02560",
+                    "source": "01 People/DSC02560.jpg",
+                    "alt": "An artist applying henna to a foot resting on a padded stool."
+                },
+                {
+                    "id": "people-dsc02615",
+                    "source": "01 People/DSC02615.jpg",
+                    "alt": "A bearded person in an orange kurta laughing at a table."
+                },
+                {
+                    "id": "people-dsc02630",
+                    "source": "01 People/DSC02630.jpg",
+                    "alt": "A person in gold jewelry looking at the henna patterns on their raised hand."
+                },
+                {
+                    "id": "people-dsc02748",
+                    "source": "01 People/DSC02748.jpg",
+                    "alt": "Black-and-white portrait of a person in a dark suit stepping through a doorway."
+                },
+                {
+                    "id": "people-dsc02767",
+                    "source": "01 People/DSC02767.jpg",
+                    "alt": "Guests gathered around a seated bride during an outdoor wedding ceremony."
+                },
+                {
+                    "id": "people-dsc02770",
+                    "source": "01 People/DSC02770.jpg",
+                    "alt": "A bride in a red veil seated among standing wedding guests."
+                },
+                {
+                    "id": "people-dsc02775",
+                    "source": "01 People/DSC02775.jpg",
+                    "alt": "Black-and-white view of a child in the foreground of an outdoor wedding ceremony."
+                },
+                {
+                    "id": "people-dsc02785",
+                    "source": "01 People/DSC02785.jpg",
+                    "alt": "Black-and-white photograph of an adult holding a small child’s hand outdoors."
+                },
+                {
+                    "id": "people-dsc02838",
+                    "source": "01 People/DSC02838.jpg",
+                    "alt": "A small child in a blue dress reaching toward toys on a white chair."
+                },
+                {
+                    "id": "people-dsc02874",
+                    "source": "01 People/DSC02874.jpg",
+                    "alt": "Black-and-white photograph of wedding guests walking across a lawn."
+                },
+                {
+                    "id": "people-dsc02899",
+                    "source": "01 People/DSC02899.jpg",
+                    "alt": "A person in a purple sari gesturing beside a lake."
+                },
+                {
+                    "id": "people-dsc02907",
+                    "source": "01 People/DSC02907.jpg",
+                    "alt": "Three people in colorful saris seated among pumpkins and hay bales."
+                },
+                {
+                    "id": "people-dsc03106",
+                    "source": "01 People/DSC03106.jpg",
+                    "alt": "A smiling person in a black cap standing behind a café counter."
+                },
+                {
+                    "id": "people-dsc03115",
+                    "source": "01 People/DSC03115.jpg",
+                    "alt": "A smiling person in a black café cap and apron looking down behind the counter."
+                },
+                {
+                    "id": "people-dsc03205",
+                    "source": "01 People/DSC03205.jpg",
+                    "alt": "A side-lit profile at night against a softly glowing streetlight."
+                }
+            ]
+        },
+        {
+            "id": "spaces",
+            "title": "Spaces",
+            "photos": [
+                {
+                    "id": "spaces-dsc01262",
+                    "source": "02 Spaces/DSC01262.JPG",
+                    "alt": "A paved path leading to a low stone structure in a sandy landscape."
+                },
+                {
+                    "id": "spaces-dsc01339",
+                    "source": "02 Spaces/DSC01339.JPG",
+                    "alt": "A pyramid rising against a deep blue sky, its stone courses catching the light."
+                },
+                {
+                    "id": "spaces-dsc01344",
+                    "source": "02 Spaces/DSC01344.JPG",
+                    "alt": "A narrow staircase alongside massive weathered stone blocks."
+                },
+                {
+                    "id": "spaces-dsc01346",
+                    "source": "02 Spaces/DSC01346.jpg",
+                    "alt": "The Sphinx and pyramids across a sunlit sandy landscape."
+                },
+                {
+                    "id": "spaces-dsc01398",
+                    "source": "02 Spaces/DSC01398.JPG",
+                    "alt": "Visitors around a circular fountain in a broad courtyard lined with arches."
+                },
+                {
+                    "id": "spaces-dsc01428",
+                    "source": "02 Spaces/DSC01428.JPG",
+                    "alt": "A lit stone archway and shopfront on a dark street."
+                },
+                {
+                    "id": "spaces-dsc01465",
+                    "source": "02 Spaces/DSC01465.JPG",
+                    "alt": "Warm light filtering through a dark geometric window grille."
+                },
+                {
+                    "id": "spaces-dsc01505",
+                    "source": "02 Spaces/DSC01505.JPG",
+                    "alt": "Tall stone towers and an arched entrance illuminated against the night sky."
+                },
+                {
+                    "id": "spaces-dsc01510",
+                    "source": "02 Spaces/DSC01510.JPG",
+                    "alt": "Stone steps leading into a narrow shop filled with glowing lanterns."
+                },
+                {
+                    "id": "spaces-dsc01531",
+                    "source": "02 Spaces/DSC01531.JPG",
+                    "alt": "A narrow market passage lined with hanging lamps and densely packed stalls."
+                },
+                {
+                    "id": "spaces-dsc01545",
+                    "source": "02 Spaces/DSC01545.JPG",
+                    "alt": "Steps and colorful market displays beneath a bright blue storefront."
+                },
+                {
+                    "id": "spaces-dsc01551",
+                    "source": "02 Spaces/DSC01551.JPG",
+                    "alt": "People walking through a narrow night market under hanging fabrics and lamps."
+                },
+                {
+                    "id": "spaces-dsc02046",
+                    "source": "02 Spaces/DSC02046.JPG",
+                    "alt": "A small rectangular building among trees and exposed rock."
+                },
+                {
+                    "id": "spaces-dsc02451",
+                    "source": "02 Spaces/DSC02451.JPG",
+                    "alt": "A sunlit log cabin kitchen and dining area with plants on the counter."
+                },
+                {
+                    "id": "spaces-dsc02459",
+                    "source": "02 Spaces/DSC02459.JPG",
+                    "alt": "A freestanding bathtub beneath the sloping timber roof of a cabin."
+                },
+                {
+                    "id": "spaces-dsc02469",
+                    "source": "02 Spaces/DSC02469.JPG",
+                    "alt": "A log cabin with a steep triangular roof surrounded by autumn trees."
+                },
+                {
+                    "id": "spaces-dsc02528",
+                    "source": "02 Spaces/DSC02528.JPG",
+                    "alt": "Blue chairs arranged around a metal outdoor fireplace in the woods."
+                },
+                {
+                    "id": "spaces-dsc02543",
+                    "source": "02 Spaces/DSC02543.JPG",
+                    "alt": "A wooden house with a long covered porch amid autumn woodland."
+                },
+                {
+                    "id": "spaces-dsc02940",
+                    "source": "02 Spaces/DSC02940.jpg",
+                    "alt": "A dark pier leading toward a lit structure reflected in still water."
+                },
+                {
+                    "id": "spaces-dsc03050",
+                    "source": "02 Spaces/DSC03050.jpg",
+                    "alt": "A café counter with a handwritten “Thanks a latte” sign and coffee equipment."
+                }
+            ]
+        },
+        {
+            "id": "land",
+            "title": "Land",
+            "photos": [
+                {
+                    "id": "land-dsc00710",
+                    "source": "03 Land/DSC00710.JPG",
+                    "alt": "A small boat on a lake below a wooded hillside."
+                },
+                {
+                    "id": "land-dsc02038",
+                    "source": "03 Land/DSC02038.JPG",
+                    "alt": "Rows of leafy plants growing beneath green shade cloth."
+                },
+                {
+                    "id": "land-dsc02476",
+                    "source": "03 Land/DSC02476.JPG",
+                    "alt": "Sunlight breaking through tall trees beside a woodland path."
+                },
+                {
+                    "id": "land-dsc03141",
+                    "source": "03 Land/DSC03141.jpg",
+                    "alt": "A person seated on a bench beneath trees overlooking a lake."
+                },
+                {
+                    "id": "land-dsc03154",
+                    "source": "03 Land/DSC03154.jpg",
+                    "alt": "Pink clouds at dusk reflected in a lake beneath a silhouetted skyline."
+                },
+                {
+                    "id": "land-dsc03171",
+                    "source": "03 Land/DSC03171.jpg",
+                    "alt": "A distant skyline reflected in still water, framed by overhanging branches."
+                }
+            ]
+        },
+        {
+            "id": "textures",
+            "title": "Textures",
+            "photos": [
+                {
+                    "id": "textures-dsc00714",
+                    "source": "04 Textures/DSC00714.JPG",
+                    "alt": "A close view of jagged, layered gray rock."
+                },
+                {
+                    "id": "textures-dsc00752",
+                    "source": "04 Textures/DSC00752.JPG",
+                    "alt": "Fine ripples forming overlapping patterns on gray water."
+                },
+                {
+                    "id": "textures-dsc01067",
+                    "source": "04 Textures/DSC01067.JPG",
+                    "alt": "Dense green foliage with delicate needle-like leaves."
+                },
+                {
+                    "id": "textures-dsc01240",
+                    "source": "04 Textures/DSC01240.JPG",
+                    "alt": "Warm sunset light reflected across small waves."
+                },
+                {
+                    "id": "textures-dsc01286",
+                    "source": "04 Textures/DSC01286.JPG",
+                    "alt": "Rows of carved figures and symbols covering a stone surface."
+                },
+                {
+                    "id": "textures-dsc01336",
+                    "source": "04 Textures/DSC01336.JPG",
+                    "alt": "Repeating courses of weathered stones rising across a pyramid face."
+                },
+                {
+                    "id": "textures-dsc01341",
+                    "source": "04 Textures/DSC01341.JPG",
+                    "alt": "A close view of large pale stone blocks with uneven worn surfaces."
+                },
+                {
+                    "id": "textures-dsc01342",
+                    "source": "04 Textures/DSC01342.JPG",
+                    "alt": "Rough stone blocks stacked in irregular steps."
+                },
+                {
+                    "id": "textures-dsc01401",
+                    "source": "04 Textures/DSC01401.JPG",
+                    "alt": "A green patterned carpet with long decorative borders."
+                },
+                {
+                    "id": "textures-dsc01548",
+                    "source": "04 Textures/DSC01548.JPG",
+                    "alt": "An array of intricately patterned boxes and decorative panels."
+                },
+                {
+                    "id": "textures-dsc02512",
+                    "source": "04 Textures/DSC02512.JPG",
+                    "alt": "Fallen autumn leaves layered across the woodland floor."
+                },
+                {
+                    "id": "textures-dsc02535",
+                    "source": "04 Textures/DSC02535.JPG",
+                    "alt": "Circular log ends set into a pale wall."
+                },
+                {
+                    "id": "textures-dsc03174",
+                    "source": "04 Textures/DSC03174.jpg",
+                    "alt": "Exposed roots and scattered twigs across dark soil."
+                }
+            ]
+        },
+        {
+            "id": "things",
+            "title": "Things",
+            "photos": [
+                {
+                    "id": "things-dsc00689",
+                    "source": "05 Things/DSC00689.JPG",
+                    "alt": "A wooden hand drum mounted among microphone stands against a green wall."
+                },
+                {
+                    "id": "things-dsc01195",
+                    "source": "05 Things/DSC01195.JPG",
+                    "alt": "A standing ancient-style statue illuminated in a dark display alcove."
+                },
+                {
+                    "id": "things-dsc01538",
+                    "source": "05 Things/DSC01538.JPG",
+                    "alt": "Decorated wooden boxes and engraved plaques stacked outside a brightly lit shop."
+                },
+                {
+                    "id": "things-dsc02992",
+                    "source": "05 Things/DSC02992.jpg",
+                    "alt": "A bowed string instrument surrounded by mechanical arms and cables."
+                },
+                {
+                    "id": "things-dsc02997",
+                    "source": "05 Things/DSC02997.jpg",
+                    "alt": "Mechanical components positioned across the strings of an acoustic guitar."
+                },
+                {
+                    "id": "things-dsc03001",
+                    "source": "05 Things/DSC03001.jpg",
+                    "alt": "A close view of guitar strings and the mechanisms mounted around them."
+                }
+            ]
+        }
+    ]
+}

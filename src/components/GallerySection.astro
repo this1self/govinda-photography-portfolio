@@ -1,0 +1,50 @@
+---
+import { srcset, type Collection } from '../lib/portfolio';
+
+interface Props {
+    collection: Collection;
+    index: number;
+}
+const { collection, index } = Astro.props;
+---
+<section class="gallery-section" id={collection.id} aria-labelledby={`${collection.id}-title`}>
+    <div class="section-heading">
+        <span class="section-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+        <h2 id={`${collection.id}-title`}>{collection.title}</h2>
+        <span class="section-count">{collection.photos.length} {collection.photos.length === 1 ? 'frame' : 'frames'}</span>
+    </div>
+    <div class="gallery" data-collection={collection.id}>
+        {collection.photos.map((photo, photoIndex) => {
+            const portrait = photo.height > photo.width;
+            const style = `--tone:${photo.color}`;
+            const label = `Open ${collection.title}, photo ${photoIndex + 1} of ${collection.photos.length}: ${photo.alt}`;
+            const first = index === 0 && photoIndex === 0;
+            const gridJpeg = photo.jpeg.filter((image) => image.width <= 1280);
+            const gridWebp = photo.webp.filter((image) => image.width <= 1280);
+            const fallback = gridJpeg.find((image) => image.width >= 640) ?? gridJpeg.at(-1);
+            const sizes = `${first ? '' : 'auto, '}(max-width: 640px) calc((100vw - 32px) / 2), (max-width: 1024px) 23vw, (max-width: 1488px) 18.4vw, 272px`;
+            return photo.placeholder ? (
+                <button type="button" class:list={["photo-link", "photo-placeholder", { "photo-portrait": portrait }]} data-photo={photo.id} style={style} aria-label={label}></button>
+            ) : (
+                <a class:list={["photo-link", { "photo-portrait": portrait }]} href={photo.jpeg.at(-1)!.src} data-photo={photo.id} style={style} aria-label={label}>
+                    <picture>
+                        <source type="image/webp" srcset={srcset(gridWebp)} sizes={sizes} />
+                        <img
+                            src={fallback!.src}
+                            srcset={srcset(gridJpeg)}
+                            sizes={sizes}
+                            width={photo.width}
+                            height={photo.height}
+                            alt={photo.alt}
+                            loading={first ? 'eager' : 'lazy'}
+                            fetchpriority={first ? 'high' : 'auto'}
+                            decoding="async"
+                        />
+                    </picture>
+                    <span class="photo-frame" aria-hidden="true"></span>
+                    <span class="photo-error" hidden>View photograph</span>
+                </a>
+            );
+        })}
+    </div>
+</section>

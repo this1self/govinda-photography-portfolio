@@ -1,0 +1,16 @@
+node_modules/
+dist/
+dist-preview/
+.astro/
+.cache/
+.wrangler/
+.env
+.env.*
+!.env.example
+.DS_Store
+Photographs/
+Not Public/
+public/media/
+src/generated/
+
+Original Photographs/

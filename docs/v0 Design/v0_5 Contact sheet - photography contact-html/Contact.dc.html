@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Contact Sheet</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&amp;family=Instrument+Sans:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#E7E5E0}
+a{color:#1C1C1A;text-decoration:none}a:hover{color:#5E5B55}
+.cta{transition:background .3s ease,color .3s ease}
+.cta:hover{background:#1C1C1A;color:#E7E5E0}
+.flink{color:#3D3B37}.flink:hover{color:#1C1C1A;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.fld{font:inherit;font-size:17px;color:#1C1C1A;background:transparent;border:0;border-bottom:1px solid #8F8B83;border-radius:0;padding:10px 0 12px;width:100%;box-sizing:border-box;transition:border-color .3s ease}
+.fld::placeholder{color:#76726B}
+.fld:focus{outline:none;border-bottom-color:#1C1C1A;box-shadow:0 1px 0 0 #1C1C1A}
+.chip{font:inherit;font-size:14px;min-height:44px;padding:0 18px;cursor:pointer;transition:background .25s ease,color .25s ease}
+.chip:focus-visible,.send:focus-visible{outline:1px solid #1C1C1A;outline-offset:3px}
+.send{transition:background .3s ease,color .3s ease}
+.send:hover{background:#E7E5E0;color:#1C1C1A}
+</style>
+</helmet>
+<div id="top" style="background: {{ground}}; color: #1C1C1A; font-family: 'Instrument Sans', system-ui, sans-serif; min-height: 100vh">
+
+  <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(16px, 5vw, 80px)">
+
+    <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 32px; padding: 22px 0">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px">
+        <a href="https://www.govindarampingali.com" title="Main site: music, permaculture and more" style="display: flex; align-items: center; gap: 12px; min-height: 44px">
+          <span style="font-family: 'Newsreader', serif; font-size: 19px; font-weight: 400; letter-spacing: 0.01em">Govinda Ram Pingali</span>
+        </a>
+        <span aria-hidden="true" style="font-family: 'Newsreader', serif; font-size: 22px; font-weight: 300; color: #A8A49C">/</span>
+        <a href="Main.dc.html" style="display: flex; align-items: center; min-height: 44px; font-family: 'Newsreader', serif; font-style: italic; font-size: 19px; font-weight: 300">Photography</a>
+      </div>
+      <nav aria-label="Primary" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase">
+        <a href="Main.dc.html#collections" style="color: #3D3B37; min-height: 44px; display: inline-flex; align-items: center">Collections</a>
+        <a href="Main.dc.html#about" style="color: #3D3B37; min-height: 44px; display: inline-flex; align-items: center">About</a>
+        <a href="Contact.dc.html" aria-current="page" style="color: #1C1C1A; min-height: 44px; display: inline-flex; align-items: center">Contact</a>
+      </nav>
+    </header>
+
+    <section style="padding: clamp(64px, 9vw, 128px) 0 clamp(48px, 6vw, 80px); display: flex; flex-direction: column; gap: 24px; max-width: 720px">
+      <p style="margin: 0; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #5E5B55">Contact sheet</p>
+      <h1 style="margin: 0; font-family: 'Newsreader', serif; font-weight: 300; font-size: clamp(40px, 5.4vw, 68px); line-height: 1.06; letter-spacing: -0.015em">Tell me what you'd<br>like <span style="font-style: italic">photographed.</span></h1>
+      <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #3D3B37; max-width: 500px">A few lines is enough. I read every message myself and reply within [two days].</p>
+    </section>
+
+    <main style="display: flex; flex-wrap: wrap; gap: clamp(48px, 7vw, 112px); align-items: flex-start; padding: 0 0 clamp(96px, 12vw, 160px); border-top: 1px solid #CBC8C1">
+
+      <sc-if value="{{showForm}}" hint-placeholder-val="{{ true }}">
+        <form aria-label="Enquiry" style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 40px; padding-top: 48px">
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 40px 32px">
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <label for="f-name" style="display: flex; gap: 14px; align-items: baseline; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #5E5B55"><span style="font-variant-numeric: tabular-nums; color: #8F8B83">01</span>Your name</label>
+              <input id="f-name" class="fld" type="text" autocomplete="name">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <label for="f-email" style="display: flex; gap: 14px; align-items: baseline; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #5E5B55"><span style="font-variant-numeric: tabular-nums; color: #8F8B83">02</span>Email</label>
+              <input id="f-email" class="fld" type="email" autocomplete="email">
+            </div>
+          </div>
+
+          <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px">
+            <legend style="display: flex; gap: 14px; align-items: baseline; padding: 0; margin-bottom: 16px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #5E5B55"><span style="font-variant-numeric: tabular-nums; color: #8F8B83">03</span>What would you like photographed?</legend>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px">
+              <sc-for list="{{kinds}}" as="item" hint-placeholder-count="4">
+                <button type="button" class="chip" aria-pressed="{{item.pressed}}" onClick="{{item.pick}}" style="{{item.style}}">{{item.label}}</button>
+              </sc-for>
+            </div>
+          </fieldset>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 40px 32px">
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <label for="f-when" style="display: flex; gap: 14px; align-items: baseline; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #5E5B55"><span style="font-variant-numeric: tabular-nums; color: #8F8B83">04</span>When</label>
+              <input id="f-when" class="fld" type="text" placeholder="A date, a month, or flexible">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <label for="f-where" style="display: flex; gap: 14px; align-items: baseline; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #5E5B55"><span style="font-variant-numeric: tabular-nums; color: #8F8B83">05</span>Where</label>
+              <input id="f-where" class="fld" type="text" placeholder="City, or the place itself">
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <label for="f-more" style="display: flex; gap: 14px; align-items: baseline; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #5E5B55"><span style="font-variant-numeric: tabular-nums; color: #8F8B83">06</span>A little more</label>
+            <textarea id="f-more" class="fld" rows="5" placeholder="Who, what for, anything you have in mind" style="resize: vertical; line-height: 1.6"></textarea>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding-top: 8px">
+            <span style="font-size: 13px; color: #5E5B55; max-width: 360px; line-height: 1.6">Nothing is booked until we've spoken. Your details stay with me.</span>
+            <button type="button" class="send" onClick="{{send}}" style="font: inherit; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 28px; border: 1px solid #1C1C1A; background: #1C1C1A; color: #E7E5E0; cursor: pointer">Send
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M0 5h13M9 1l4 4-4 4"></path></svg>
+            </button>
+          </div>
+        </form>
+      </sc-if>
+
+      <sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px; padding-top: 64px">
+          <p style="margin: 0; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #5E5B55">Received</p>
+          <p style="margin: 0; font-family: 'Newsreader', serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.2">Thank you. <span style="font-style: italic">I'll write back soon.</span></p>
+          <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #3D3B37; max-width: 460px">In the meantime, you're welcome to wander the collections.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px 28px">
+            <a href="Main.dc.html#collections" style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; display: inline-flex; align-items: center; min-height: 44px; border-bottom: 1px solid #1C1C1A">Back to collections</a>
+            <button type="button" onClick="{{reset}}" style="font: inherit; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; background: none; border: 0; color: #5E5B55; min-height: 44px; padding: 0; cursor: pointer">Send another</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <aside aria-label="Other ways to reach me" style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 36px; padding-top: 48px">
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+            <sc-for list="{{sheet}}" as="f" hint-placeholder-count="12">
+              <div style="display: flex; flex-direction: column; gap: 4px">
+                <div style="{{f.style}}"></div>
+                <span style="font-size: 9px; letter-spacing: 0.08em; color: #8F8B83; font-variant-numeric: tabular-nums">{{f.num}}</span>
+              </div>
+            </sc-for>
+          </div>
+          <span style="font-size: 12px; color: #5E5B55">[A strip of your own frames]</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px; padding-top: 24px; border-top: 1px solid #CBC8C1">
+          <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5E5B55">Or write directly</span>
+          <a class="flink" href="#" style="font-size: 16px; line-height: 1.9">[email address]</a>
+          <a class="flink" href="#" style="font-size: 16px; line-height: 1.9">[Instagram]  ↗</a>
+        </div>
+      </aside>
+
+    </main>
+
+    <footer style="border-top: 1px solid #1C1C1A; padding: clamp(56px, 7vw, 96px) 0 32px; display: flex; flex-direction: column; gap: clamp(48px, 6vw, 80px)">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 40px 32px; font-size: 14px; line-height: 2">
+        <div style="display: flex; flex-direction: column">
+          <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5E5B55; margin-bottom: 10px">Photography</span>
+          <a class="flink" href="Gallery.dc.html">Structures</a>
+          <a class="flink" href="Gallery.dc.html">People</a>
+          <a class="flink" href="Gallery.dc.html">Gatherings</a>
+          <a class="flink" href="Gallery.dc.html">Land</a>
+          <a class="flink" href="Gallery.dc.html">Thresholds</a>
+          <a class="flink" href="Gallery.dc.html">Field Notes</a>
+          <a class="flink" href="Gallery.dc.html">Shot on iPhone</a>
+        </div>
+        <div style="display: flex; flex-direction: column">
+          <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5E5B55; margin-bottom: 10px">Elsewhere</span>
+          <a class="flink" href="https://www.govindarampingali.com">Home  ↗</a>
+          <a class="flink" href="https://soundcloud.com/this-ego">Music, as This Ego  ↗</a>
+          <a class="flink" href="https://www.pgr.earth">Permaculture, The Palette  ↗</a>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; padding-top: 24px; border-top: 1px solid #CBC8C1; font-size: 12px; letter-spacing: 0.04em; color: #5E5B55">
+        <span>© 2026 Govinda Ram Pingali</span>
+        <span><a href="https://www.govindarampingali.com" style="color: #5E5B55">govindarampingali.com</a> / <a href="Main.dc.html" style="color: #1C1C1A">photography</a></span>
+        <a href="#top" style="color: #5E5B55; min-height: 44px; display: inline-flex; align-items: center; gap: 8px">Back to top
+          <svg width="10" height="12" viewBox="0 0 10 12" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M5 12V1M1 5l4-4 4 4"></path></svg>
+        </a>
+      </div>
+    </footer>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"ground":{"editor":"color","default":"#E7E5E0","options":["#E7E5E0","#EAE8E3","#E2E0DA","#EDEBE7"]},"$preview":{"width":1440,"height":2300}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { kind: null, sent: false };
+  }
+  renderVals() {
+    const KINDS = ['Portrait', 'A gathering', 'A space', 'Something else'];
+    const TONES = ['#D3D0C9', '#CAC6BE', '#D8D5CF', '#C4C0B7', '#CFCBC4'];
+    const ARS = ['3 / 2', '3 / 2', '3 / 2', '3 / 2'];
+    const kind = this.state.kind;
+    const kinds = KINDS.map((k) => {
+      const on = kind === k;
+      return {
+        label: k,
+        pressed: on ? 'true' : 'false',
+        pick: () => this.setState({ kind: on ? null : k }),
+        style: on
+          ? 'background: #1C1C1A; color: #E7E5E0; border: 1px solid #1C1C1A'
+          : 'background: transparent; color: #1C1C1A; border: 1px solid #8F8B83'
+      };
+    });
+    const sheet = [];
+    for (let i = 0; i < 12; i++) {
+      sheet.push({
+        num: String(i + 1).padStart(2, '0') + 'A',
+        style: 'aspect-ratio: ' + ARS[i % 4] + '; background: ' + TONES[(i * 2) % 5]
+      });
+    }
+    return {
+      ground: this.props.ground ?? '#E7E5E0',
+      kinds,
+      sheet,
+      sent: this.state.sent,
+      showForm: !this.state.sent,
+      send: () => this.setState({ sent: true }),
+      reset: () => this.setState({ sent: false, kind: null })
+    };
+  }
+}
+</script>
+</body>
+</html>

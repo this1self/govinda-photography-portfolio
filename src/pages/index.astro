@@ -1,0 +1,40 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import GallerySection from '../components/GallerySection.astro';
+import PhotoViewer from '../components/PhotoViewer.astro';
+import data from '../generated/portfolio.json';
+import { site, type Portfolio } from '../lib/portfolio';
+
+const portfolio = data as Portfolio;
+if (import.meta.env.PROD && portfolio.preview && process.env.PORTFOLIO_PREVIEW !== '1') {
+    throw new Error('Design placeholders cannot be published. Run the production media preparation first.');
+}
+const firstPhoto = portfolio.collections[0]?.photos[0];
+const socialImage = firstPhoto?.jpeg.find((image) => image.width >= 1200)?.src ?? firstPhoto?.jpeg.at(-1)?.src;
+const viewerData = JSON.stringify(portfolio.collections).replace(/</g, '\\u003c');
+---
+<SiteLayout preview={portfolio.preview || process.env.PORTFOLIO_PREVIEW === '1'} socialImage={socialImage}>
+    <div class="page">
+        <SiteHeader />
+        <h1 class="sr-only">{site.title}</h1>
+        <div class="intro-space" aria-hidden="true"></div>
+        {portfolio.preview && <p class="preview-note">Design preview · photographs to follow</p>}
+        <main id="portfolio" class="portfolio" tabindex="-1">
+            {portfolio.collections.map((collection, index) => <GallerySection collection={collection} index={index} />)}
+        </main>
+        <footer class="site-footer">
+            <span>© {new Date().getUTCFullYear()} {site.name}</span>
+            <span class="footer-address"><a href={site.home}>govindarampingali.com</a> / <a href="#top">photography</a></span>
+            <a class="back-to-top" href="#top">
+                Back to top
+                <svg width="10" height="12" viewBox="0 0 10 12" fill="none" stroke="currentColor" aria-hidden="true"><path d="M5 12V1M1 5l4-4 4 4" /></svg>
+            </a>
+        </footer>
+    </div>
+    <PhotoViewer />
+    <script id="portfolio-data" type="application/json" set:html={viewerData}></script>
+    <script>
+        import '../scripts/gallery';
+    </script>
+</SiteLayout>

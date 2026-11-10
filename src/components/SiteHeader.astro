@@ -1,0 +1,19 @@
+---
+import { site } from '../lib/portfolio';
+---
+<header class="site-header">
+    <div class="identity">
+        <a class="identity-name" href={site.home} target="_blank" rel="noopener noreferrer">{site.name}</a>
+        <span class="identity-slash" aria-hidden="true">/</span>
+        <a class="identity-discipline" href="#top" aria-current="page">Photography</a>
+    </div>
+    <details class="contact" id="contact">
+        <summary>
+            Contact
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" aria-hidden="true"><path d="M1 1l4 4 4-4" /></svg>
+        </summary>
+        <div class="contact-panel">
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+    </details>
+</header>
