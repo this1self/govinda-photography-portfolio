@@ -19,9 +19,9 @@ const { collection, index } = Astro.props;
             const style = `--tone:${photo.color}`;
             const label = `Open ${collection.title}, photo ${photoIndex + 1} of ${collection.photos.length}: ${photo.alt}`;
             const first = index === 0 && photoIndex === 0;
-            const gridJpeg = photo.jpeg.filter((image) => image.width <= 1280);
-            const gridWebp = photo.webp.filter((image) => image.width <= 1280);
-            const fallback = gridJpeg.find((image) => image.width >= 640) ?? gridJpeg.at(-1);
+            const gridJpeg = photo.jpeg.slice(0, 1);
+            const gridWebp = photo.webp.slice(0, 1);
+            const fallback = gridJpeg[0];
             const sizes = `${first ? '' : 'auto, '}(max-width: 640px) calc((100vw - 32px) / 2), (max-width: 1024px) 23vw, (max-width: 1488px) 18.4vw, 272px`;
             return photo.placeholder ? (
                 <button type="button" class:list={["photo-link", "photo-placeholder", { "photo-portrait": portrait }]} data-photo={photo.id} style={style} aria-label={label}></button>

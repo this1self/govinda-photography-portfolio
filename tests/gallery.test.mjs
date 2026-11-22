@@ -168,7 +168,7 @@ test('broken thumbnails expose a usable image link; contact closes on outside cl
 });
 
 
-test('viewer selects one source by display width and pixel density; stale errors cannot spoil success', async (t) => {
+test('viewer loads the large preset with JPEG fallback; stale errors cannot spoil success', async (t) => {
     const s = setup(t);
     const stage = s.document.querySelector('#viewer-stage');
     Object.defineProperty(stage, 'clientWidth', { value: 700 });
@@ -176,11 +176,11 @@ test('viewer selects one source by display width and pixel density; stale errors
     Object.defineProperty(s.window, 'devicePixelRatio', { value: 2 });
     s.click(s.links[0]);
     const image = s.pendingImages.at(-1);
-    assert.match(image.src, /\/1600\.webp$/);
+    assert.match(image.src, /\/3200\.webp$/);
     assert.equal(image.srcset, '');
     image.onerror();
     const fallback = s.pendingImages.at(-1);
-    assert.match(fallback.src, /\/1600\.jpg$/);
+    assert.match(fallback.src, /\/3200\.jpg$/);
     assert.equal(fallback.srcset, '');
     await fallback.onload();
     image.onerror();

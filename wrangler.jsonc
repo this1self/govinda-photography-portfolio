@@ -12,6 +12,10 @@
         {
             "pattern": "photography.govindarampingali.com",
             "custom_domain": true
+        },
+        {
+            "pattern": "www.photography.govindarampingali.com",
+            "custom_domain": true
         }
     ]
 }

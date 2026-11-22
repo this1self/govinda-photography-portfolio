@@ -107,14 +107,11 @@ function initializeViewer(viewer: HTMLDialogElement, collections: Collection[]) 
             if (token === generation && viewer.open) status.hidden = false;
         }, 250);
 
-        const displayWidth = Math.min(stage.clientWidth, stage.clientHeight * photo.width / photo.height);
-        const requiredWidth = Math.max(1, displayWidth * (window.devicePixelRatio || 1));
         let attempt = 0;
         function load(variants: Rendition[], fallback = false) {
             // A single source avoids overlapping responsive-source updates on a
             // detached image. Each fallback gets its own element and callbacks.
-            const candidates = [...variants].sort((a, b) => a.width - b.width);
-            const rendition = candidates.find((item) => item.width >= requiredWidth) ?? candidates.at(-1)!;
+            const rendition = variants.at(-1)!;
             const request = ++attempt;
             const image = new Image();
             let loaded = false;

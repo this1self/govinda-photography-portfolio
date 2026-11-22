@@ -32,7 +32,7 @@ for (const collection of portfolio.collections) {
     for (const photo of collection.photos) {
         for (const variant of [...photo.webp, ...photo.jpeg]) {
             if (!variant.src.startsWith('/media/')) throw new Error('Unexpected media origin.');
-            const info = await stat(path.join(root, variant.src));
+            const info = await stat(path.join(root, decodeURIComponent(variant.src)));
             if (!info.size) throw new Error(`Empty rendition: ${variant.src}`);
         }
     }

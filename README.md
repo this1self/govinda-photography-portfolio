@@ -37,7 +37,7 @@ builds to `dist/`, and checks the generated files and bundle budgets.
 
 ## Add the photographs
 
-The current page includes 67 photos across People, Spaces, Land, Textures, and
+The current page includes 70 photos across People, Spaces, Land, Textures, and
 Things. Gatherings is excluded; its event folders are reserved for a later review.
 
 Keep final source exports in the ignored `Original Photographs/` folder, grouped however
@@ -67,9 +67,21 @@ date, and caption are optional. Paths are relative to `Original Photographs/`.
 JPEG, PNG, WebP, and single-image TIFF inputs are supported. Export HEIC/RAW files
 to a supported format before ingestion. Web derivatives are capped at 3200px on
 the long edge, converted to sRGB, stripped of private metadata, and encoded as
-WebP and JPEG. No visible or invisible watermark is added. Sources are never
+WebP and JPEG. Each photo has a 960px-wide thumbnail and a lightbox image capped
+at 3200px on its long edge, without enlargement. Smaller sources use their
+available resolution, with identical sizes deduplicated. Filenames `960` and
+`3200` identify these presets; a portrait's `3200` image is 3200px tall.
+No visible or invisible watermark is added. Sources are never
 copied into the site. A local content-hash cache
 avoids processing unchanged images; unselected generated files are removed.
+
+`public/media/` mirrors the six category folders in `Original Photographs/`:
+`01 People`, `02 Spaces`, `03 Land`, `04 Textures`, `05 Things`, and
+`06 Gatherings`. Each contains the selected photos' existing ID/hash folders,
+with only `960.webp`, `960.jpg`, `3200.webp`, and `3200.jpg` where both sizes
+are needed. Gatherings remains empty until photographs are selected for it.
+Generated URLs encode spaces in category names. The media command migrates
+the previous flat folders and removes obsolete sizes automatically.
 
 Change the contact email and site metadata in `src/lib/portfolio.ts`.
 The initial contact address comes from the supplied design reference.

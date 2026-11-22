@@ -113,6 +113,11 @@
                     "id": "people-dsc03205",
                     "source": "01 People/DSC03205.jpg",
                     "alt": "A side-lit profile at night against a softly glowing streetlight."
+                },
+                {
+                    "id": "people-dsc03332",
+                    "source": "01 People/DSC03332.jpg",
+                    "alt": "A person in a gray knit hat smelling a bar of soap beside a market display of colorful soaps."
                 }
             ]
         },
@@ -219,6 +224,16 @@
                     "id": "spaces-dsc03050",
                     "source": "02 Spaces/DSC03050.jpg",
                     "alt": "A café counter with a handwritten “Thanks a latte” sign and coffee equipment."
+                },
+                {
+                    "id": "spaces-dsc03474",
+                    "source": "02 Spaces/DSC03474.jpg",
+                    "alt": "Red and white traffic light trails along a multi-lane highway beneath an illuminated city skyline at night."
+                },
+                {
+                    "id": "spaces-dsc03595",
+                    "source": "02 Spaces/DSC03595.jpg",
+                    "alt": "A rain-slicked street at night beside a brick building with an illuminated PONCE sign and tower."
                 }
             ]
         },
